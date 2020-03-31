@@ -51,6 +51,25 @@ app.post('/api/v1/crops', (req, res) => {
     })
 });
 
+app.get('/api/v1/crops/:id', (req, res) => {
+    const id = req.params.id
+    db.map((crop) => {
+        if(crop.id === id) {
+            return res.status(200).send({
+                success: 'true',
+                message: 'Crop retrieved successfully',
+                crop,
+            });
+        }
+    });
+
+    return res.status(404).send({
+        success: 'false',
+        message: 'Sorry, crop does not exist',
+    });
+
+});
+
 
 
 const PORT = 5000; 
