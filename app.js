@@ -12,8 +12,9 @@ app.get('/api/v1/crops', (req, res) => {
     })
 })
 
-const PORT 5000; 
+const PORT = 5000; 
 
+// ceate a web server with app.listen
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`)
-})
+});
