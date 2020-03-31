@@ -9,7 +9,21 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// get all crops
+const PORT = 5000; 
+
+// create a web server with app.listen
+app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`)
+});
+
+
+
+
+/* * *
+CRUD FUNCTIONALITY
+* * */
+
+// GET ALL CROPS
 app.get('/api/v1/crops', (req, res) => {
     res.status(200).send({
         success:'true',
@@ -19,7 +33,7 @@ app.get('/api/v1/crops', (req, res) => {
 })
 
 
-// post data 
+// POST NEW CROP
 app.post('/api/v1/crops', (req, res) => {
     if(!req.body.crop) {
         return res.status(400).send({
@@ -51,6 +65,8 @@ app.post('/api/v1/crops', (req, res) => {
     })
 });
 
+
+// GET CROP BY ID
 app.get('/api/v1/crops/:id', (req, res) => {
     const id = req.params.id
     db.map((crop) => {
@@ -70,11 +86,31 @@ app.get('/api/v1/crops/:id', (req, res) => {
 
 });
 
+// DELETE CROP
+app.delete('/api/v1/crops/:id', (req, res) => {
+    const id = req.params.id;
 
+    db.map((crop, index) => {
+        if(crop.id === id) {
+            db.splice(index, 1);
+            return res.status(200).send({
+                success: 'true',
+                message: 'Crop deleted'
+            });
+        }
+    });
+    
 
-const PORT = 5000; 
+    return res.status(404).send({
+        success: 'false',
+        message: 'Crop not found', 
+    });
 
-// ceate a web server with app.listen
-app.listen(PORT, () => {
-    console.log(`server running on port ${PORT}`)
 });
+
+
+
+
+
+
+
