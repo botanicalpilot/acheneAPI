@@ -1,8 +1,10 @@
+
 const crops = [
     {
         id: 1, 
         title: "corn",
-        seedPlantMonth: 4 
+        seedPlantDate: 4, 
+        startPlantDate: 5
     }
 ];
 
