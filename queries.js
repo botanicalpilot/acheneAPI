@@ -45,9 +45,9 @@ const createCrop = (request, response) => {
 
 const updateCrop = (request, response) => {
     const id = parseInt(request.params.id)
-    const { commonName, scientificname, seeddatespring, startdatespring, seeddatefall, startdatefall } = request.body
+    const { commonname, scientificname, seeddatespring, startdatespring, seeddatefall, startdatefall } = request.body
 
-    pool.query('UPDATE crops SET commonname = $1, scientificname = $2, seeddatespring = $3, startdatespring = $4, seeddatefall = $5, startdatefall = $6 WHERE id = $7', [commonName, scientificname, seeddatespring, startdatespring, seeddatefall, startdatefall], (error, results) => {
+    pool.query('UPDATE crops SET commonname = $1, scientificname = $2, seeddatespring = $3, startdatespring = $4, seeddatefall = $5, startdatefall = $6 WHERE id = $7', [commonname, scientificname, seeddatespring, startdatespring, seeddatefall, startdatefall, id], (error, results) => {
         if(error) {
             console.log(error)
             throw error
