@@ -3,7 +3,7 @@ require('dotenv').config()
 const Pool = require('pg').Pool
 const isProduction = process.env.NODE_ENV === 'production'
 
-const connectionString = `postgresql://${process.env.user}:${process.env.password}@${process.env.host}:${process.env.port}/${process.env.database}`
+const connectionString = `postgresql://${process.env.user}:${process.env.password}@${process.env.host}:${process.env.db_port}/${process.env.database}`
 
 
 const pool = new Pool({
@@ -16,7 +16,6 @@ const pool = new Pool({
 const getCrops = (request, response) => {
     pool.query('SELECT * FROM crops ORDER BY id ASC', (error, results) => {
         if (error) {
-            console.log(error)
             throw error
         }
         response.status(200).json(results.rows)
