@@ -1,12 +1,14 @@
 require('dotenv').config()
 
 const Pool = require('pg').Pool
+const isProduction = process.env.NODE_ENV === 'production'
+
+const connectionString = `postgresql://${process.env.user}:${process.env.password}@${process.env.host}:${process.env.port}/${process.env.database}`
+
+
 const pool = new Pool({
-    user: process.env.user,
-    host: process.env.host,
-    database: process.env.database, 
-    password: process.env.password, 
-    port: 5432,
+  connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
+  ssl: isProduction,
 })
 
 // if sending to production don't forget to move config details to separate file w/ permissions
