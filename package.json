@@ -28,7 +28,8 @@
     "express-rate-limit": "^5.1.1",
     "express-validator": "^6.4.0",
     "helmet": "^3.22.0",
-    "pg": "^8.0.0"
+    "pg": "^8.0.0",
+    "nodemon": "^2.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
