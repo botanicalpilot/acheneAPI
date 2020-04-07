@@ -1,6 +1,9 @@
 {
   "name": "acheneAPI",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.13.0"
+  }
   "description": "RESTFUL API",
   "main": "index.js",
   "scripts": {
