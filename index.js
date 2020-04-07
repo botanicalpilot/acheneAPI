@@ -1,7 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const port  = 3000
 const db = require('./queries')
 const helmet = require('helmet')
 const compression = require('compression')
@@ -35,7 +34,7 @@ app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and PostgreSQL  RESTFUL API'})
 })
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`App running on port ${port}.`)
 })
 
